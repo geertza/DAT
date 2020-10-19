@@ -5,7 +5,7 @@ import io from "socket.io-client";
 import Chat from '../Chat/Chat/Chat';
 import './lobby.css'
 import Draggable from 'react-draggable';
-let socket = io('http://localhost:3001');
+
 
 
  class Game extends Component {
@@ -18,14 +18,7 @@ let socket = io('http://localhost:3001');
       message:'',
       }
     } 
-//     componentDidMount() {
-//      let user = this.context;
-//         socket.emit('join',  user, (error) => {
-//         if(error) {
-//           alert(error);
-//         }
-//       })
-// }
+
     
 
     
@@ -35,23 +28,7 @@ let socket = io('http://localhost:3001');
       console.log('user',user)
       
 
-      //-----------------socket-----------------------------------------------------------------
-socket.on('message', message => {
-  this.setState({messages : [  message ]});
-});
-
-socket.on("roomData", ({ users }) => {
-  // setUsers(users);
-});
-const sendMessage = (event) => {
-event.preventDefault();
-  console.log(this.state.message)
-if(this.state.message) {
-  socket.emit('sendMessage', this.state.message, () => this.setState.Message(''));
-  this.setState.Message('')
-}
-
-}
+  
       return (
         <div>
           Game {user.room}
