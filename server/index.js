@@ -10,7 +10,7 @@ const socketio = require('socket.io');
 
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./Controller/roomUsers');
-const router = require('./controller/router');
+const router = require('./Controller/router');
 
 const app = express();
 const server = http.createServer(app);
