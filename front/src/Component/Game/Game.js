@@ -1,7 +1,5 @@
 import React, { Component} from 'react'
 import UserContext from '../User/User'
-import io from "socket.io-client";
-// import Input from "../Chat/Input/Input"
 import Chat from '../Chat/Chat/Chat';
 import './lobby.css'
 import Draggable from 'react-draggable';

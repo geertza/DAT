@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
-import queryString from 'query-string';
 import io from "socket.io-client";
-
-import TextContainer from '../TextContainer/TextContainer';
 import Messages from '../Messages/Messages';
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
 
 import './Chat.css';
 
-// const ENDPOINT = 'http://localhost:5000';
-const ENDPOINT = 'https://dungeons-and-theater.herokuapp.com/';
+const ENDPOINT = 'http://localhost:5000';
+// const ENDPOINT = 'https://dungeons-and-theater.herokuapp.com/';
 let socket;
 
 const Chat = (props) => {
-  const [name, setName] = useState(props.user.name);
+  const [name] = useState(props.user.name);
   const [room] = useState(props.user.room);
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
@@ -22,11 +19,7 @@ const Chat = (props) => {
 
   useEffect(() => {
     
-
     socket = io(ENDPOINT);
-
-    
-
     socket.emit('join', { name, room }, (error) => {
       if(error) {
         alert(error);
