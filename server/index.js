@@ -9,7 +9,7 @@ const http = require('http');
 const socketio = require('socket.io');
 
 
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./controller/roomUsers');
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./Controller/roomUsers');
 const router = require('./controller/router');
 
 const app = express();
