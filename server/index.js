@@ -56,7 +56,7 @@ io.on('connect', (socket) => {
 });
 
 // Multi-process to utilize all CPU cores.
-if (!isDev && cluster.isMaster) {
+// if (!isDev && cluster.isMaster) {
   console.error(`Node cluster master ${process.pid} is running`);
 
   // Fork workers.
@@ -68,22 +68,22 @@ if (!isDev && cluster.isMaster) {
     console.error(`Node cluster worker ${worker.process.pid} exited: code ${code}, signal ${signal}`);
   });
 
-} else {
+// } else {
   
 
-  // Priority serve any static files.
-  app.use(express.static(path.resolve(__dirname, '../front/build')));
+//   // Priority serve any static files.
+//   app.use(express.static(path.resolve(__dirname, '../front/build')));
 
-  // Answer API requests.
-  app.get('/api', function (req, res) {
-    res.set('Content-Type', 'application/json');
-    res.send('{"message":"Hello from the custom server!"}');
-  });
+//   // Answer API requests.
+//   app.get('/api', function (req, res) {
+//     res.set('Content-Type', 'application/json');
+//     res.send('{"message":"Hello from the custom server!"}');
+//   });
 
-  // All remaining requests return the React app, so it can handle routing.
-  app.get('*', function(request, response) {
-    response.sendFile(path.resolve(__dirname, '../front/build', 'index.html'));
-  });
+//   // All remaining requests return the React app, so it can handle routing.
+//   app.get('*', function(request, response) {
+//     response.sendFile(path.resolve(__dirname, '../front/build', 'index.html'));
+//   });
 
-  server.listen(process.env.PORT || 3001, () => console.log(`Server has started. on 3001`));
-}
+//   server.listen(process.env.PORT || 3001, () => console.log(`Server has started. on 3001`));
+// }
