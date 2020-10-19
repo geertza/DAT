@@ -9,6 +9,37 @@ const http = require('http');
 const socketio = require('socket.io');
 
 
+
+
+// Multi-process to utilize all CPU cores.
+if (!isDev && cluster.isMaster) {
+  console.error(`Node cluster master ${process.pid} is running`);
+
+  // Fork workers.
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', (worker, code, signal) => {
+    console.error(`Node cluster worker ${worker.process.pid} exited: code ${code}, signal ${signal}`);
+  });
+
+} else {
+  
+
+  // Priority serve any static files.
+  app.use(express.static(path.resolve(__dirname, '../front/build')));
+
+  // Answer API requests.
+  app.get('/api', function (req, res) {
+    res.set('Content-Type', 'application/json');
+    res.send('{"message":"Hello from the custom server!"}');
+  });
+
+  // All remaining requests return the React app, so it can handle routing.
+  app.get('*', function(request, response) {
+    response.sendFile(path.resolve(__dirname, '../front/build', 'index.html'));
+  });
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./Controller/roomUsers');
 const router = require('./Controller/router');
 
@@ -54,36 +85,5 @@ io.on('connect', (socket) => {
     }
   })
 });
-
-// Multi-process to utilize all CPU cores.
-if (!isDev && cluster.isMaster) {
-  console.error(`Node cluster master ${process.pid} is running`);
-
-  // Fork workers.
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
-
-  cluster.on('exit', (worker, code, signal) => {
-    console.error(`Node cluster worker ${worker.process.pid} exited: code ${code}, signal ${signal}`);
-  });
-
-} else {
-  
-
-  // Priority serve any static files.
-  app.use(express.static(path.resolve(__dirname, '../front/build')));
-
-  // Answer API requests.
-  app.get('/api', function (req, res) {
-    res.set('Content-Type', 'application/json');
-    res.send('{"message":"Hello from the custom server!"}');
-  });
-
-  // All remaining requests return the React app, so it can handle routing.
-  app.get('*', function(request, response) {
-    response.sendFile(path.resolve(__dirname, '../front/build', 'index.html'));
-  });
-
   server.listen(process.env.PORT || 3001, () => console.log(`Server has started. on 3001`));
 }
