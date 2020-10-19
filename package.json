@@ -7,13 +7,13 @@
   },
   "scripts": {
     "start": "node server",
-    "build": "cd front/ && npm install && npm run build",
-    "front": "npm start --prefix front",
-    "dev": "concurrently \"npm run start\"\npm run front\""
+    "build": "cd react-ui/ && npm install && npm run build",
+    "react-ui": "npm start --prefix react-ui",
+    "dev": "concurrently \"npm run start\"\npm run react-ui\""
   },
   "cacheDirectories": [
     "node_modules",
-    "front/node_modules"
+    "react-ui/node_modules"
   ],
   "dependencies": {
     "cors": "^2.8.5",

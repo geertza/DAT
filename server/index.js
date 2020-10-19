@@ -9,7 +9,7 @@ const http = require('http');
 const socketio = require('socket.io');
 const app = express();
 const server = express()
-  .use(express.static(path.resolve(__dirname, '../front/build')))
+  .use(express.static(path.resolve(__dirname, '../react-ui/build')))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 const io = socketio(server);
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./Controller/roomUsers');
@@ -19,35 +19,7 @@ app.use(router);
 
 
 
-// // Multi-process to utilize all CPU cores.
-// if (!isDev && cluster.isMaster) {
-//   console.error(`Node cluster master ${process.pid} is running`);
-//   console.log('build running');
-//   // Fork workers.
-//   for (let i = 0; i < numCPUs; i++) {
-//     cluster.fork();
-//   }
 
-//   cluster.on('exit', (worker, code, signal) => {
-//     console.error(`Node cluster worker ${worker.process.pid} exited: code ${code}, signal ${signal}`);
-//   });
-
-// } else {
-  
-//   console.log('dev running');
-//   // Priority serve any static files.
-//   app.use(express.static(path.resolve(__dirname, '../front/build')));
-
-//   // Answer API requests.
-//   app.get('/api', function (req, res) {
-//     res.set('Content-Type', 'application/json');
-//     res.send('{"message":"Hello from the custom server!"}');
-//   });
-
-//   // All remaining requests return the React app, so it can handle routing.
-//   app.get('*', function(request, response) {
-//     response.sendFile(path.resolve(__dirname, '../front/build', 'index.html'));
-//   });
 
 
 
