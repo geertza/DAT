@@ -1,0 +1,21 @@
+{
+  "name": "dat",
+  "description": "rpg with react and socket.io",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

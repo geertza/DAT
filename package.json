@@ -1,0 +1,35 @@
+{
+  "name": "dat",
+  "version": "3.0.0",
+  "description": "rpg with react and socket.io",
+  "engines": {
+    "node": "10.x"
+  },
+  "scripts": {
+    "start": "node server",
+    "build": "cd front/ && npm install && npm run build",
+    "front": "npm start --prefix front",
+    "dev": "concurrently \"npm run start\"\npm run front\""
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "front/node_modules"
+  ],
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "socketio": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mars/heroku-cra-node.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
+  ],
+  "license": "MIT",
+  "devDependencies": {}
+}
