@@ -6,8 +6,8 @@ import Input from '../Input/Input';
 
 import './Chat.css';
 
-// const ENDPOINT = 'http://localhost:5000';
-const ENDPOINT = 'https://dungeons-and-theater.herokuapp.com/';
+const ENDPOINT = 'http://localhost:3001';
+// const ENDPOINT = 'https://dungeons-and-theater.herokuapp.com/';
 let socket;
 
 const Chat = (props) => {

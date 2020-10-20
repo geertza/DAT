@@ -1,5 +1,4 @@
 {
-  
   "name": "dat",
   "version": "3.0.0",
   "description": "rpg with react and socket.io",
@@ -17,7 +16,9 @@
     "react-ui/node_modules"
   ],
   "dependencies": {
+    "axios": "^0.20.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.16.4",
     "socketio": "^1.0.0"
   },

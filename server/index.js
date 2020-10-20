@@ -1,29 +1,32 @@
 const express = require('express');
 const path = require('path');
-const cluster = require('cluster');
-const numCPUs = require('os').cpus().length;
 const cors = require('cors');
-const isDev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 5000;
 const http = require('http');
 const socketio = require('socket.io');
 const app = express();
-const server = express()
-  .use(express.static(path.resolve(__dirname, '../react-ui/build')))
-  .listen(PORT, () => console.log(`Listening on ${PORT}`));
-const io = socketio(server);
+
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./Controller/roomUsers');
 const router = require('./Controller/router');
-app.use(cors());
-app.use(router);
+const bodyParser = require("body-parser");
+app.use(
+  cors({
+    origin:"http://localhost:" + 3000, // <-- location of the react app were connecting to
+    credentials: true,
+  })
+);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/user',router);
+app.get('/', function (req, res) {
+  res.send('hello world')
+})
 
 
-
-
-
-
-
-
+const server = express()
+  .use(express.static(path.resolve(__dirname, '../react-ui/build')))
+  .listen(3001, () => console.log(`Listening on ${PORT}`));
+const io = socketio(server);
 
 // ------------------------socketio ------------
 io.on('connect', (socket) => {
@@ -61,3 +64,5 @@ io.on('connect', (socket) => {
 });
   // app.listen(PORT, () => console.log(`Server has started. on`,PORT));
 // }
+
+app.listen(PORT, () => console.log(`Listening on `));
