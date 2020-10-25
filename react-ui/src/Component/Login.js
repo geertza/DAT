@@ -52,8 +52,8 @@ export default class Login extends Component {
           <Button
           onClick={() => {
               if (this.state.name !== ''){
-               const newUser = { name: this.state.name, loggedIn: true ,room: 'lobby'}
-                setUser(newUser)
+               setUser(this.state.name)
+                // setUser(newUser)
               }
             }}
           >

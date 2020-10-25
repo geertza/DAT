@@ -1,11 +1,13 @@
 import React, { Component,useState } from 'react'
 import {ToggleButtonGroup,ToggleButton,Modal} from 'react-bootstrap'
 import Api from '../../Routes/api'
+import UserContext from '../User/User'
 export default class apiSearch extends Component {
+  static contextType = UserContext
   constructor(){
     super();
     this.state={
-      open:true,
+      open:false,
       search:'',
       imageGallery:[],
       room:'',
@@ -15,10 +17,10 @@ export default class apiSearch extends Component {
       character:[] 
     };
   }  
-   
+ 
   
   render() {
-      
+       const {  setCharacter, setBackground } = this.context
         //event handlers------------------
   const handleOpen = () => {
     this.setState({
@@ -39,39 +41,35 @@ export default class apiSearch extends Component {
     });
 		console.log(this.state.search)
 	  }
-	  const handleChange = event => {
+    const handleChange = event => {
       if (this.state.alignment === 'bg'){
-        this.setState({
-          BG: event.target.value
-        });
+        setBackground(event.target.src)
       }
-      this.setState({
-        ImageUrl: event.target.value
-      });
+      else{
+          setCharacter(event.target.src);
+      }
     }
     //-------------query api
     const onSubmitform = e =>{
         e.preventDefault();
         let option = this.state.alignment;
-        let image= this.state.search;
-          console.log(option,image)
+        let image = this.state.search;
         Api(image,option)
         .then(data=>{
+          console.log('returned data ',data)
           this.setState({
             imageGallery: data.data.value
           });
         }).catch(err => console.error(err))
       }
   
-      const handleAlignment = (event) => {
+      const handleAlignment = (value) => {
         this.setState({
-          Alignment: this.value
+          alignment: value
+          
         });
       };
         return (
-            <div>
-                
-          <div>
           <div>
       <button type="button" onClick={handleOpen}>
         Images
@@ -105,19 +103,15 @@ export default class apiSearch extends Component {
 			</div>
 			<div className="grid">
 				{this.state.imageGallery.map(function (image, i) {
-					return <div ><img id='character' key={i} src={image.contentUrl}  alt="" onClick={handleChange}></img> </div>
+					return <div ><img id='character' key={i} src={image.contentUrl} value={image.contentUrl} alt="" onClick={handleChange}></img> </div>
 				})}
 			</div>
 		</div>
-	);      
+	      
         </div>
           </Modal>
     </div>
    
-
-       </div>
-       
-            </div>
         )
     }
 }
