@@ -1,7 +1,8 @@
-import React, { Component,useState } from 'react'
+import React, { Component } from 'react'
 import {ToggleButtonGroup,ToggleButton,Modal} from 'react-bootstrap'
 import Api from '../../Routes/api'
 import UserContext from '../User/User'
+import Draggable from 'react-draggable';
 export default class apiSearch extends Component {
   static contextType = UserContext
   constructor(){
@@ -26,7 +27,6 @@ export default class apiSearch extends Component {
     this.setState({
       open: true
     });
-    console.log(this.state.open)
   };
 
   const handleClose = () => {
@@ -42,6 +42,9 @@ export default class apiSearch extends Component {
 		console.log(this.state.search)
 	  }
     const handleChange = event => {
+      this.setState({
+        open: false
+      });
       if (this.state.alignment === 'bg'){
         setBackground(event.target.src)
       }
@@ -74,11 +77,13 @@ export default class apiSearch extends Component {
       <button type="button" onClick={handleOpen}>
         Images
       </button>
+      <Draggable>
       <Modal
         show={this.state.open}
         onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+        // aria-labelledby="simple-modal-title"
+        // aria-describedby="simple-modal-description"
+        className='modal'
       >
          <div>
         <div className="ApiBody">
@@ -91,8 +96,6 @@ export default class apiSearch extends Component {
 						name="search"
 						autoComplete='search'
 						onChange={onChange}
-						
-						
 					/>
           <ToggleButtonGroup type="radio"  name='apiSelector' onChange={handleAlignment}>
             <ToggleButton value='char'>character</ToggleButton>
@@ -103,13 +106,14 @@ export default class apiSearch extends Component {
 			</div>
 			<div className="grid">
 				{this.state.imageGallery.map(function (image, i) {
-					return <div ><img id='character' key={i} src={image.contentUrl} value={image.contentUrl} alt="" onClick={handleChange}></img> </div>
+					return <img id='character' key={i} src={image.contentUrl} value={image.contentUrl} alt="" onClick={handleChange}></img> 
 				})}
 			</div>
 		</div>
 	      
         </div>
           </Modal>
+          </Draggable>
     </div>
    
         )

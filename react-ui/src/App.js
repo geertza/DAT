@@ -3,7 +3,7 @@ import React from 'react'
 import Login from './Component/Login'
 import Game from './Component/Game/Game';
 import UserContext from './Component/User/User'
-// import './App.css'
+import './App.css'
 // import Test from './Component/Objects/apiSearch'
 export default class App extends React.Component {
   static contextType = UserContext

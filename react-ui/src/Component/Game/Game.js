@@ -1,10 +1,11 @@
 import React, { Component} from 'react'
 import UserContext from '../User/User'
-import Chat from '../Chat/Chat/Chat';
+// import Chat from '../Chat/Chat/Chat';
 import Draggable from 'react-draggable';
-import Characters from '../Objects/Characters/Characters'
+// import Characters from '../Objects/Characters/Characters'
 import ApiSearch from '../Objects/apiSearch'
-
+// import '../../App.css'
+// import Test from '../test'
 
  class Game extends Component {
    static contextType = UserContext
@@ -25,23 +26,23 @@ import ApiSearch from '../Objects/apiSearch'
     
     render() {
       console.log('context',this.context.room.background)
-      const changesomething = () => {
-        console.log('here')
-      };
+      
       let {user,room} = this.context;
       let character= user.character
       return (
-        <div classname='game'style={{backgroundImage:`url(${room.background})`}}>
+        <div className="game" style={{backgroundImage:`url(${room.background})`}}>
           {/* <Messages messages={this.state.messages} message={this.state.message} /> */}
+           <ApiSearch />
           <Draggable>
             <div>
           {/* <Chat user={user} /> */}
           </div>
           </Draggable>
-          <ApiSearch />
+          <Draggable>
           {/* <Characters /> */}
-          <div ><img id='character'  src={character}  alt="" ></img> </div>
-          <a onClick={changesomething()} >here test button</a>
+          <div ><img className='character'  src={character}  alt="" ></img> </div>
+          </Draggable>
+         
         </div>
         )
     }
