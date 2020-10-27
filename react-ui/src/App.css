@@ -21,15 +21,16 @@ height: auto;
 overflow: scroll;
 }
 .character{
-    height: 30vh;
+    height: 50vh;
+    width: initial;
     /* display: -ms-inline-grid; */
    
-   
+    transform: translate(50px, 100px);
 }
 #character{
     height: 30vh;
     /* display: -ms-inline-grid; */
-   
+    transform: translate(250px, 167.333px);
    
 }
 
@@ -50,7 +51,7 @@ overflow: scroll;
     width: 20vw;
 }
 
-messages{
+.messages{
     bottom: 0%;
 }
 
@@ -60,6 +61,15 @@ messages{
 .Avatar{
     height: 20vh;
 }
+.react-draggable{
+    background: none;
+    border-style: none;
+    box-sizing: content-box;
+}
+.react-draggable:hover{
+    border-style: groove;
+}
+
 
 
 

@@ -14,6 +14,12 @@ class UserProvider extends Component {
        room:'lobby',
       character:'https://konachan.com/image/cae80ed9135d408ff41e7a67d4591b85/Konachan.com%20-%20147407%20ass%20black_hair%20blush%20breasts%20kirisaki_kyouko%20nipples%20nude%20short_hair%20to_love_ru%20to_love_ru_darkness%20transparent%20vector.png'
     },
+    otherUsers:{
+      bill:{
+        character:'https://konachan.com/image/cae80ed9135d408ff41e7a67d4591b85/Konachan.com%20-%20147407%20ass%20black_hair%20blush%20breasts%20kirisaki_kyouko%20nipples%20nude%20short_hair%20to_love_ru%20to_love_ru_darkness%20transparent%20vector.png',
+        style:'sdfds'
+      }
+    }
       
    
   }
@@ -27,6 +33,12 @@ class UserProvider extends Component {
   }
   setBackground = (data)=>{
     this.setState({ room: {background : data} });
+  }
+  setCharStyle=(data)=>{
+    // console.log('bill',this.state.bill)
+    console.log('setstyle',data)
+    this.setState({ otherUsers:{bill:{ ...this.state.otherUsers.bill,style:data}} });
+    
   }
   // add items to images not setup yet
   // onAddItem = () => {
@@ -43,16 +55,18 @@ class UserProvider extends Component {
 
   render() {
     const { children } = this.props
-    const { user,room } = this.state
-    const { setUser,setCharacter,setBackground} = this
+    const { user,room,otherUsers } = this.state
+    const { setUser,setCharacter,setBackground,setCharStyle} = this
     return (
       <UserContext.Provider
         value={{
           user,
           room,
+          otherUsers,
           setUser,
           setCharacter,
-          setBackground
+          setBackground,
+          setCharStyle
         }}
       >
         {children}
