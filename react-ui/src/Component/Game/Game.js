@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
-import UserContext from '../User/User'
-// import Chat from '../Chat/Chat/Chat';
+import UserContext from '../../Global/User'
+import Socket from '../../Global/socket';
 import Draggable from 'react-draggable';
 import Characters from '../Objects/Characters/Characters'
 import ApiSearch from '../Objects/apiSearch'
@@ -13,31 +13,18 @@ import ApiSearch from '../Objects/apiSearch'
    constructor(props){
       super();
       this.state = {
-      messages:[],
-      message:'',
+     
       }
     } 
-    // componentDidUpdate(context){
-    //   console.log(this.context)
-    // }
-    
-    
-
-    
     render() {
-      // console.log('context',this.context.room.background)
-      
-      let {user,room,otherUsers} = this.context;
-      // let character= user.character
-      // let otherStyle = otherUsers.bill.style
-      // console.log('ostyle',otherStyle)
+      let {room} = this.context;
       return (
         <div className="game" style={{backgroundImage:`url(${room.background})`}}>
-          {/* <Messages messages={this.state.messages} message={this.state.message} /> */}
+            
            <ApiSearch />
           <Draggable>
             <div>
-          {/* <Chat user={user} /> */}
+          <Socket  r />
           </div>
           </Draggable>
           <Characters />

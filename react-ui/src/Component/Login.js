@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import UserContext from './User/User'
+import UserContext from '../Global/User'
 
 import {Form, Button, Container} from 'react-bootstrap';
 export default class Login extends Component {
@@ -52,8 +52,7 @@ export default class Login extends Component {
           <Button
           onClick={() => {
               if (this.state.name !== ''){
-               setUser(this.state.name)
-                // setUser(newUser)
+                setUser(this.state.name)
               }
             }}
           >

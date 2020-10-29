@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import UserContext from '../../User/User'
+import UserContext from '../../../Global/User'
 import OtherUsers from './otherUsers'
 import { Rnd } from "react-rnd";
 export default class Characters extends Component {
@@ -10,25 +10,16 @@ export default class Characters extends Component {
             charTransform:''
         }
     }
+   
     
     render() {
         const {otherUsers,setCharStyle} = this.context;
     //   let objects = otherUsers.bill.character
     //   let otherstyle = otherUsers.bill.style
-
-
-
-
-        let {user} = this.context
+    let {user} = this.context
         let objects = user.character
         const changePosition = e => {
             setCharStyle(e.target.parentElement.style)
-        
-            // this.setState({
-        //   charTransform: e.target.parentElement
-        // });
-        // console.log(e.target.parentElement)
-      
       }
       
 

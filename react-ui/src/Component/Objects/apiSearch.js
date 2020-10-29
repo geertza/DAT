@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {ToggleButtonGroup,ToggleButton,Modal} from 'react-bootstrap'
-import Api from '../../Routes/api'
-import UserContext from '../User/User'
+import UserContext from '../../Global/User'
 import Draggable from 'react-draggable';
 export default class apiSearch extends Component {
   static contextType = UserContext
@@ -10,7 +9,6 @@ export default class apiSearch extends Component {
     this.state={
       open:false,
       search:'',
-      imageGallery:[],
       room:'',
       alignment:'char',
       bg:'',
@@ -21,7 +19,7 @@ export default class apiSearch extends Component {
  
   
   render() {
-       const {  setCharacter, setBackground } = this.context
+       const {  setCharacter, setBackground,api,imageGallery } = this.context
         //event handlers------------------
   const handleOpen = () => {
     this.setState({
@@ -57,13 +55,7 @@ export default class apiSearch extends Component {
         e.preventDefault();
         let option = this.state.alignment;
         let image = this.state.search;
-        Api(image,option)
-        .then(data=>{
-          console.log('returned data ',data)
-          this.setState({
-            imageGallery: data.data.value
-          });
-        }).catch(err => console.error(err))
+        api(image,option)
       }
   
       const handleAlignment = (value) => {
@@ -105,8 +97,9 @@ export default class apiSearch extends Component {
 				</form>
 			</div>
 			<div className="grid">
-				{this.state.imageGallery.map(function (image, i) {
-					return <img id='character' key={i} src={image.contentUrl} value={image.contentUrl} alt="" onClick={handleChange}></img> 
+        {console.log('image',imageGallery)}
+				{imageGallery.map(function (image, i) {
+					return <img id='character' key={i} src={image}  alt="" onClick={handleChange}></img> 
 				})}
 			</div>
 		</div>

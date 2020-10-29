@@ -5,34 +5,32 @@ const PORT = process.env.PORT || 5000;
 const http = require('http');
 const socketio = require('socket.io');
 const app = express();
-
+const Search = require ('./Controller/BingSearch')
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./Controller/roomUsers');
-const router = require('./Controller/router');
 const bodyParser = require("body-parser");
+
+
+
 app.use(
   cors({
-    origin:"http://localhost:" + 3000, // <-- location of the react app were connecting to
+    origin:"http://localhost:" + 3001, // <-- location of the react app were connecting to
     credentials: true,
   })
 );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/user',router);
-app.get('/', function (req, res) {
-  res.send('hello world')
-})
-
-
 const server = express()
   .use(express.static(path.resolve(__dirname, '../react-ui/build')))
   .listen(3001, () => console.log(`Listening on ${PORT}`));
 const io = socketio(server);
 
+
+
+
 // ------------------------socketio ------------
 io.on('connect', (socket) => {
-  socket.on('join', ({ name, room }, callback) => {
-    const { error, user } = addUser({ id: socket.id, name, room });
-
+  socket.on('join', ({ name, roomName }, callback) => {
+    const { error, user } = addUser({ id: socket.id, name, roomName });
     if(error) return callback(error);
 
     socket.join(user.room);
@@ -41,17 +39,36 @@ io.on('connect', (socket) => {
     socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
 
     io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
-
     callback();
   });
 
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id);
-
     io.to(user.room).emit('message', { user: user.name, text: message });
 
     callback();
   });
+  socket.on('sendCharacter', (data) => {
+    const user = getUser(socket.id);
+    console.log(user)
+    socket.broadcast.to(user.room).emit('otherUserInfo', { data})
+    // io.to(user.room).emit('otherUserInfo', {data});
+  });
+  
+
+
+
+  socket.on('Search',(data)=> {
+    console.log(data)
+    let image = data.Search.image;
+    let option = data.Search.option;
+    async function sendSearch(image,option){
+        const data = await Search(image,option);
+        // console.log('data',data)
+        socket.emit('searchResults', {data});
+      }
+      sendSearch(image,option)
+  })
 
   socket.on('disconnect', () => {
     const user = removeUser(socket.id);
@@ -62,7 +79,6 @@ io.on('connect', (socket) => {
     }
   })
 });
-  // app.listen(PORT, () => console.log(`Server has started. on`,PORT));
-// }
 
+ 
 app.listen(PORT, () => console.log(`Listening on `));

@@ -21,16 +21,16 @@ height: auto;
 overflow: scroll;
 }
 .character{
-    height: 50vh;
+    height: 50%;
     width: initial;
     /* display: -ms-inline-grid; */
    
-    transform: translate(50px, 100px);
+    transform: translate(50%, 500px);
 }
 #character{
-    height: 30vh;
+    height: 50vh;
     /* display: -ms-inline-grid; */
-    transform: translate(250px, 167.333px);
+    /* transform: translate(550px, 167.333px); */
    
 }
 
@@ -65,10 +65,29 @@ overflow: scroll;
     background: none;
     border-style: none;
     box-sizing: content-box;
+    transform: translate(50%, 30%);
 }
 .react-draggable:hover{
     border-style: groove;
 }
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border-radius: 8px;
+    max-height: 80vh;
+    width: 25vw;
+    border-style: solid;
+    border-width: 5px;
+    position: absolute;
+    right: 0;
+  }
+  .messages {
+    padding: 5% 0;
+    overflow: auto;
+    flex: auto;
+  }
 
 
 

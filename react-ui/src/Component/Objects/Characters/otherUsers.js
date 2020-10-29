@@ -1,18 +1,36 @@
 import React, { Component } from 'react'
-import UserContext from '../../User/User'
+import UserContext from '../../../Global/User'
 export default class otherUsers extends Component {
     static contextType = UserContext
+    // constructor(props){
+    //     super();
+    //     this.setState({
+            
+    //     })
+    // }
+
+
     render() {
         let {otherUsers} = this.context;
-        let objects = otherUsers.bill.character
-        let otherstyle = otherUsers.bill.style
-        console.log('height',otherstyle.height)
-        return (
-            <div>
-                <div style={{height:'50%',width:'100%',position:'fixed',bottom:'0',backgroundColor:'white'}} />
-                <div ><img id='character'  src={objects}  alt="" style={{height:otherstyle.height}}></img> </div>
-            </div>
-        )
+        
+        if (JSON.stringify(otherUsers) === '{}'){
+            console.log('empty',otherUsers)
+            return(<div />)
+        }
+        else
+        {
+            console.log(otherUsers.user.style.height)
+            // let objects = otherUsers.ted.character
+            let otherstyle = otherUsers.user.style
+            console.log('os',otherstyle.height)
+            return (
+                
+                <div>
+                
+                    <div ><img id= {otherUsers.user.name} src={otherUsers.user.character}  alt="" style={{height:otherstyle.height}}></img> </div>
+                </div>
+            )
+        }
     }
 }
 
