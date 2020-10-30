@@ -11,13 +11,13 @@ let socket;
 
 function Socket(props) {
   
-  let {room,user,setOtherChars,Search,setGallery} = useContext(UserContext);
-  const [name] = useState(user.name);
+  let {room,setOtherChars,Search,setGallery,style,character,name} = useContext(UserContext);
   const [roomName] = useState(room.lobby);
-  const [users, setUsers] = useState('');
+  // const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-
+  const [other] = useState()
+  
   useEffect(() => {
     
     socket = io(ENDPOINT);
@@ -30,12 +30,12 @@ function Socket(props) {
   
   useEffect(() => {
     socket.on('message', message => {
-      setMessages(messages => [ ...messages, message ]);
+      setMessages(messages => [...messages, message ]);
     });
     
-    socket.on("roomData", ({ users }) => {
-      setUsers(users);
-    });
+    // socket.on("roomData", ({ users }) => {
+    //   setUsers(users);
+    // });
     socket.on('otherUserInfo',({data }) =>{
       console.log('other')
       setOtherChars(data)
@@ -45,13 +45,15 @@ function Socket(props) {
     });
   }, []);
   useEffect(() => {
-      socket.emit('sendCharacter', { user}, (error) => {
+    console.log('charemit')
+      socket.emit('sendCharacter', ({name,character,style}), (error) => {
+        
         if(error) {
           alert(error);
         }
       });
     },
-    [user],
+    [style],
   );
   useEffect(() => {
     if (Search.image === ''){

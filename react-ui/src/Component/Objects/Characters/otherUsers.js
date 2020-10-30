@@ -12,25 +12,23 @@ export default class otherUsers extends Component {
 
     render() {
         let {otherUsers} = this.context;
-        
+        // console.log('berfore',otherUsers)
         if (JSON.stringify(otherUsers) === '{}'){
-            console.log('empty',otherUsers)
+            console.log('empty')
             return(<div />)
         }
         else
         {
-            console.log(otherUsers.user.style.height)
+           
             // let objects = otherUsers.ted.character
-            let otherstyle = otherUsers.user.style
-            console.log('os',otherstyle.height)
+            let otherstyle = otherUsers
             return (
                 
                 <div>
                 
-                    <div ><img id= {otherUsers.user.name} src={otherUsers.user.character}  alt="" style={{height:otherstyle.height}}></img> </div>
+                    <div ><img id= {otherUsers.name} src={otherUsers.info.character}  alt="" style={{height:otherstyle.height}}></img> </div>
                 </div>
             )
         }
     }
 }
-

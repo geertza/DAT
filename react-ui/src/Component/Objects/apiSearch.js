@@ -97,7 +97,6 @@ export default class apiSearch extends Component {
 				</form>
 			</div>
 			<div className="grid">
-        {console.log('image',imageGallery)}
 				{imageGallery.map(function (image, i) {
 					return <img id='character' key={i} src={image}  alt="" onClick={handleChange}></img> 
 				})}

@@ -42,17 +42,27 @@ io.on('connect', (socket) => {
     callback();
   });
 
-  socket.on('sendMessage', (message, callback) => {
+  socket.on('sendMessage', (message,err) => {
+   
     const user = getUser(socket.id);
+    
+    if (user !== undefined){
     io.to(user.room).emit('message', { user: user.name, text: message });
-
-    callback();
+    }
+    else{
+      throw err;
+    }
+    
   });
   socket.on('sendCharacter', (data) => {
     const user = getUser(socket.id);
-    console.log(user)
+    if (user !== undefined){
     socket.broadcast.to(user.room).emit('otherUserInfo', { data})
     // io.to(user.room).emit('otherUserInfo', {data});
+  }
+  else{
+    throw err;
+  }
   });
   
 
