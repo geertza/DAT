@@ -1,29 +1,16 @@
 import React, { Component } from 'react'
 import UserContext from '../../../Global/User'
-import OtherUsers from './otherUsers'
 import { Rnd } from "react-rnd";
 export default class Characters extends Component {
     static contextType = UserContext
-    constructor(props) {
-        super();
-        this.state={
-            charTransform:''
-        }
-    }
-   
-    
+  
     render() {
         const {setCharStyle,character} = this.context;
-    //   let objects = otherUsers.bill.character
-    //   let otherstyle = otherUsers.bill.style
-        // console.log('user char',user)
         let objects = character
-            
+            // get styles from parent element 'rnd module'
         const changePosition = e => {
             setCharStyle(e.target.parentElement.style,e.target.src)
-      }
-      
-
+        }
         return (
             <div>
                  <Rnd
@@ -38,7 +25,7 @@ export default class Characters extends Component {
                 >
                     <img src={objects} alt='' style={{width:'100%',height:'100%',backgroundColor:'transparent'}} />
                 </Rnd>
-               <OtherUsers />
+               
             </div>
         )
     }

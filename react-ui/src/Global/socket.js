@@ -26,7 +26,7 @@ function Socket(props) {
         alert(error);
       }
     });
-  }, []);
+  }, [name,roomName]);
   
   useEffect(() => {
     socket.on('message', message => {
@@ -47,7 +47,7 @@ function Socket(props) {
       console.log('reset')
       window.location.reload(); 
     })
-  }, []);
+  }, [setOtherChars,setGallery]);
   useEffect(() => {
     if (style===''){
       console.log('style empty')
@@ -63,7 +63,7 @@ function Socket(props) {
         });
       }
     },
-    [style],
+    [style,name,character],
   );
   useEffect(() => {
     if (Search.image === ''){

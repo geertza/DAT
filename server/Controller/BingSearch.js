@@ -24,7 +24,7 @@ async function search(image,option) {
           params:{
             imageType: 'transparent',
             safeSearch: 'off',
-            count:100
+            count:150
           }
 
       })

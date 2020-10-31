@@ -7,8 +7,9 @@ class UserProvider extends Component {
     room:{
       loggedIn: false,
       lobby:'lobby',
-    background:'https://wallup.net/wp-content/uploads/2018/09/25/633156-apocalyptic-Chaos-748x421.jpg',
+    
     },
+    background:'https://wallup.net/wp-content/uploads/2018/09/25/633156-apocalyptic-Chaos-748x421.jpg',
     name: 'ted',
     character:'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f359881d-6bb2-4391-aba6-779f7084edd4/davdil3-23d71c5f-9848-4877-b803-262d882f2816.png/v1/fill/w_699,h_1144,strp/superman___transparent_by_asthonx1_davdil3-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD0xOTk5IiwicGF0aCI6IlwvZlwvZjM1OTg4MWQtNmJiMi00MzkxLWFiYTYtNzc5ZjcwODRlZGQ0XC9kYXZkaWwzLTIzZDcxYzVmLTk4NDgtNDg3Ny1iODAzLTI2MmQ4ODJmMjgxNi5wbmciLCJ3aWR0aCI6Ijw9MTIyMSJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.mAkAF1j8LvvxcZ30ewCLHt2CrKn4KHzyptkRDK0WcZc',
     style:'',
@@ -41,11 +42,11 @@ class UserProvider extends Component {
     this.setState({ character:data});
   }
   setBackground = (data)=>{
-    this.setState({ room: {background : data} });
+    this.setState({background : data});
   }
   setCharStyle=(data,src)=>{
     this.setState({style: {}});
-    this.setState({style: {data}});
+    this.setState({style: data});
     console.log('here',this.state.style)
   }
   setOtherChars=(data)=>{
@@ -57,7 +58,6 @@ class UserProvider extends Component {
   }
   setGallery = (data) => {
     let results = data.data
-    console.log('ddd',results)
     this.setState({imageGallery:results})
   }
  
@@ -65,7 +65,7 @@ class UserProvider extends Component {
   render() {   
     
     const { children } = this.props
-    const { name,character,style,room,otherUsers,Chat,Search,imageGallery } = this.state
+    const { name,character,style,room,otherUsers,Chat,Search,imageGallery,background } = this.state
     const { setUser,setCharacter,setBackground,setCharStyle,setOtherChars,api,setGallery} = this
     return (
       <UserContext.Provider
@@ -78,6 +78,7 @@ class UserProvider extends Component {
           style,
           name,
           character,
+          background,
           setUser,
           setCharacter,
           setBackground,
