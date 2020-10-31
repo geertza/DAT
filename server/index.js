@@ -30,7 +30,7 @@ const io = socketio(server);
 io.on('connect', (socket) => {
   socket.on('join', ({ name, roomName }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, roomName });
-    if(error) return callback(error);
+    if(error) return callback(error), socket.emit('pageReset') ;
 
     socket.join(user.room);
 
@@ -49,7 +49,7 @@ io.on('connect', (socket) => {
     io.to(user.room).emit('message', { user: user.name, text: message });
     }
     else{
-      throw err;
+      socket.emit('pageReset')
     }
     
   });
@@ -59,7 +59,7 @@ io.on('connect', (socket) => {
     let newData={otherName:data.name,otherCharacter:data.character,otherStyle:data.style}
     if (user !== undefined){
       namedData={[nameplate]:newData},
-    socket.to(user.room).emit('otherUserInfo', {namedData})
+    socket.to(user.room).emit('otherUserInfo', {newData})
   }
   else{
     socket.emit('pageReset')

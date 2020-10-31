@@ -44,13 +44,13 @@ class UserProvider extends Component {
     this.setState({ room: {background : data} });
   }
   setCharStyle=(data,src)=>{
-    console.log('hj',data)
-    this.setState({style: data});
+    this.setState({style: {}});
+    this.setState({style: {data}});
     console.log('here',this.state.style)
   }
   setOtherChars=(data)=>{
-    // console.log('databack',data)
-    this.setState({...this.state.otherUsers,otherUsers:data})
+    this.state.otherUsers[data.otherName]= data
+  console.log('fianl here',this.state.otherUsers)
   }
   api=(image,option) => {
     this.setState({Search:{image:image,option:option}})

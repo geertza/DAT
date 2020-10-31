@@ -36,15 +36,16 @@ function Socket(props) {
     // socket.on("roomData", ({ users }) => {
     //   setUsers(users);
     // });
-    socket.on('otherUserInfo',({namedData }) =>{
-      console.log('other',namedData)
-      setOtherChars(namedData)
+    socket.on('otherUserInfo',({newData }) =>{
+      console.log('other',newData)
+      setOtherChars(newData)
     });
     socket.on('searchResults', data => {
       setGallery(data)
     });
     socket.on('pageReset', () =>{
-      window.location.reload();
+      console.log('reset')
+      window.location.reload(); 
     })
   }, []);
   useEffect(() => {
