@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useContext, Component,componentDidUpdate} from "react";
+import React, { useState, useEffect ,useContext} from "react";
 import io from "socket.io-client";
 import Messages from '../Component/Chat/Messages/Messages';
 import InfoBar from '../Component/Chat/InfoBar/InfoBar';
@@ -16,7 +16,7 @@ function Socket(props) {
   // const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const [other] = useState()
+  
   
   useEffect(() => {
     
@@ -36,22 +36,31 @@ function Socket(props) {
     // socket.on("roomData", ({ users }) => {
     //   setUsers(users);
     // });
-    socket.on('otherUserInfo',({data }) =>{
-      console.log('other')
-      setOtherChars(data)
+    socket.on('otherUserInfo',({namedData }) =>{
+      console.log('other',namedData)
+      setOtherChars(namedData)
     });
     socket.on('searchResults', data => {
       setGallery(data)
     });
+    socket.on('pageReset', () =>{
+      window.location.reload();
+    })
   }, []);
   useEffect(() => {
-    console.log('charemit')
-      socket.emit('sendCharacter', ({name,character,style}), (error) => {
-        
-        if(error) {
-          alert(error);
-        }
-      });
+    if (style===''){
+      console.log('style empty')
+    }
+    else
+    {
+      console.log('charemit')
+        socket.emit('sendCharacter', ({name,character,style}), (error) => {
+          
+          if(error) {
+            alert(error);
+          }
+        });
+      }
     },
     [style],
   );

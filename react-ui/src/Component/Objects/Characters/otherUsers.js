@@ -11,24 +11,24 @@ export default class otherUsers extends Component {
 
 
     render() {
-        let {otherUsers} = this.context;
-        // console.log('berfore',otherUsers)
-        if (JSON.stringify(otherUsers) === '{}'){
-            console.log('empty')
-            return(<div />)
-        }
-        else
-        {
+        // let {otherUsers,test} = this.context;
+        // console.log('berfore',test,UserContext)
+        // if ((JSON.stringify(otherUsers) === '[]')||(otherUsers === undefined)){
+        //     console.log('empty')
+        //     return(<div />)
+        // }
+        // else
+        // {
            
-            // let objects = otherUsers.ted.character
-            let otherstyle = otherUsers
             return (
                 
                 <div>
-                
-                    <div ><img id= {otherUsers.name} src={otherUsers.info.character}  alt="" style={{height:otherstyle.height}}></img> </div>
+                    	{/* {otherUsers.map(function ( i) {
+                    let x = i[Object.keys(i)[0]]
+                    return  <img src={x.otherCharacter} id= {x.otherName} style={{height:x.otherStyle.height,width:x.otherStyle.width}} ></img> 
+				})} */}
                 </div>
             )
-        }
+        // }
     }
 }

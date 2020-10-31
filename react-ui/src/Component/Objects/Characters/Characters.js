@@ -13,7 +13,7 @@ export default class Characters extends Component {
    
     
     render() {
-        const {otherUsers,setCharStyle,user,character} = this.context;
+        const {setCharStyle,character} = this.context;
     //   let objects = otherUsers.bill.character
     //   let otherstyle = otherUsers.bill.style
         // console.log('user char',user)

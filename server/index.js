@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const PORT = process.env.PORT || 5000;
 const http = require('http');
 const socketio = require('socket.io');
 const app = express();
@@ -21,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const server = express()
   .use(express.static(path.resolve(__dirname, '../react-ui/build')))
-  .listen(3001, () => console.log(`Listening on ${PORT}`));
+  .listen(3001, () => console.log(`Listening on 3001`));
 const io = socketio(server);
 
 
@@ -56,12 +55,14 @@ io.on('connect', (socket) => {
   });
   socket.on('sendCharacter', (data) => {
     const user = getUser(socket.id);
+    let nameplate= data.name
+    let newData={otherName:data.name,otherCharacter:data.character,otherStyle:data.style}
     if (user !== undefined){
-    socket.broadcast.to(user.room).emit('otherUserInfo', { data})
-    // io.to(user.room).emit('otherUserInfo', {data});
+      namedData={[nameplate]:newData},
+    socket.to(user.room).emit('otherUserInfo', {namedData})
   }
   else{
-    throw err;
+    socket.emit('pageReset')
   }
   });
   
@@ -91,4 +92,3 @@ io.on('connect', (socket) => {
 });
 
  
-app.listen(PORT, () => console.log(`Listening on `));

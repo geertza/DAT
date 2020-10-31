@@ -1,7 +1,6 @@
 import React, { Component} from 'react'
 import UserContext from '../../Global/User'
 import Socket from '../../Global/socket';
-import Draggable from 'react-draggable';
 import Characters from '../Objects/Characters/Characters'
 import ApiSearch from '../Objects/apiSearch'
 // import '../../App.css'
@@ -17,21 +16,13 @@ import ApiSearch from '../Objects/apiSearch'
       }
     } 
     render() {
-      let {room} = this.context;
+      
       return (
-        <div className="game" style={{backgroundImage:`url(${room.background})`}}>
-            
-           <ApiSearch />
-          <Draggable>
-            <div>
-          <Socket  r />
-          </div>
-          </Draggable>
+      <React.Fragment >
+      <ApiSearch />
+          <Socket   />
           <Characters />
-          
-         
-          
-        </div>
+        </React.Fragment>
         )
     }
 }
