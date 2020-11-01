@@ -2,9 +2,8 @@ import React, { useState, useEffect ,useContext} from "react";
 import io from "socket.io-client";
 import Messages from '../Component/Chat/Messages/Messages';
 import InfoBar from '../Component/Chat/InfoBar/InfoBar';
-import Input from '../Component/Chat/Input/Input';
 import UserContext from './User'
-
+import { Rnd } from "react-rnd";
 const ENDPOINT = 'http://localhost:3001';
 // const ENDPOINT = 'https://dungeons-and-theater.herokuapp.com/';
 let socket;
@@ -16,8 +15,7 @@ function Socket(props) {
   // const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  
-  
+  console.log('sock sendm',props.sendM)
   useEffect(() => {
     
     socket = io(ENDPOINT);
@@ -80,22 +78,35 @@ function Socket(props) {
   },
   [Search],
 );
-  const sendMessage = (event) => {
-    event.preventDefault();
-
-    if(message) {
-      socket.emit('sendMessage', message, () => setMessage(''));
-    }
+useEffect(() => {
+  console.log('use',props.sendM)
+  if (props.sendM === ''){
+    return
   }
+  else{
+    socket.emit('sendMessage', props.sendM, () => setMessage(''));
+    
+  }
+  
+},
+[props.sendM],
+);
+ 
 
   return (
-    
-      <div className="container">
-          <InfoBar room={roomName} />
-          <Messages messages={messages} name={name} />
-          <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
-      </div>
-    
+    <React.Fragment>
+    <Rnd  
+    className='chat'
+    default={{
+      x: 0,
+      y: 0,
+      width: '800px',
+      height: '200px'
+      }}
+    >
+    <Messages messages={messages} name={name}  />
+    </Rnd>
+    </React.Fragment>
   );
 }
 

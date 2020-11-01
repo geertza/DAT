@@ -9,9 +9,9 @@ class UserProvider extends Component {
       lobby:'lobby',
     
     },
-    background:'https://wallup.net/wp-content/uploads/2018/09/25/633156-apocalyptic-Chaos-748x421.jpg',
+    background:'https://wallpapertag.com/wallpaper/full/9/2/a/121775-club-background-2000x1333-for-iphone-6.jpg',
     name: 'ted',
-    character:'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f359881d-6bb2-4391-aba6-779f7084edd4/davdil3-23d71c5f-9848-4877-b803-262d882f2816.png/v1/fill/w_699,h_1144,strp/superman___transparent_by_asthonx1_davdil3-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD0xOTk5IiwicGF0aCI6IlwvZlwvZjM1OTg4MWQtNmJiMi00MzkxLWFiYTYtNzc5ZjcwODRlZGQ0XC9kYXZkaWwzLTIzZDcxYzVmLTk4NDgtNDg3Ny1iODAzLTI2MmQ4ODJmMjgxNi5wbmciLCJ3aWR0aCI6Ijw9MTIyMSJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.mAkAF1j8LvvxcZ30ewCLHt2CrKn4KHzyptkRDK0WcZc',
+    character:'https://i.kym-cdn.com/photos/images/original/001/321/186/351.png',
     style:'',
     otherUsers:{}
      ,

@@ -1,75 +1,83 @@
-import React, { Component } from 'react'
+import React, { Component} from 'react'
 import {ToggleButtonGroup,ToggleButton,Modal} from 'react-bootstrap'
 import UserContext from '../../Global/User'
-import Draggable from 'react-draggable';
+
 export default class apiSearch extends Component {
   static contextType = UserContext
-  constructor(){
+  constructor(props){
     super();
     this.state={
       open:false,
       search:'',
-      room:'',
-      alignment:'char',
-      bg:'',
-      playRender:[],
-      character:[] 
+      option:''
     };
   }  
- 
+  // open modal with prop update
+  // componentDidUpdate(nextProps) {
+  //   if(this.props.alignment = nextProps.alignment){
+  //     console.log('fucker hit',nextProps,this.props)
+  //   }
+  //   else{
+  //     console.log('open',this.props,nextProps)
+  //     this.setState({open:true})
+  //   }
+  // } 
+  componentDidUpdate(prevProps) {
+    if (prevProps.alignment !== this.props.alignment) {
+      if(this.props.alignment === ('bg' || 'back'))
+        { this.setState({option:'bg'})}
+        else
+        { this.setState({option:'char'})}
+      this.setState({open:true})
+      }
+      
+    }
   
-  render() {
-       const {  setCharacter, setBackground,api,imageGallery } = this.context
-        //event handlers------------------
-  const handleOpen = () => {
-    this.setState({
-      open: true
-    });
-  };
-
-  const handleClose = () => {
-    this.setState({
-      open: false
-    });
+  render() { 
+  
+    
+    const {  setCharacter, setBackground,api,imageGallery } = this.context
+    // close modal
+    const handleClose = () => {
+    console.log('hitclose',this.state.open)
+     this.setState({open:false})
   };
 
   const onChange = e =>{
     this.setState({
       search: e.target.value
     });
-		console.log(this.state.search)
+    alignmentCheck()
 	  }
-    const handleChange = event => {
-      this.setState({
-        open: false
-      });
-      if (this.state.alignment === 'bg'){
-        setBackground(event.target.src)
-      }
-      else{
-          setCharacter(event.target.src);
-      }
+  const handleChange = event => {
+    console.log('hit change',this.state.alignment)
+    handleClose()
+    if (this.state.option === 'bg'){
+      setBackground(event.target.src)
     }
+    else{
+        setCharacter(event.target.src);
+    }
+    
+  }
+
+  const alignmentCheck = () =>{
+    if(this.props.alignment === ('bg' || 'back'))
+        { this.setState({option:'bg'})}
+        else
+        { this.setState({option:'char'})}
+  }
+
+
     //-------------query api
     const onSubmitform = e =>{
         e.preventDefault();
-        let option = this.state.alignment;
-        let image = this.state.search;
-        api(image,option)
+        api(this.state.search,this.state.option)
       }
   
-      const handleAlignment = (value) => {
-        this.setState({
-          alignment: value
-          
-        });
-      };
         return (
           <div>
-      <button type="button" onClick={handleOpen}>
-        Images
-      </button>
-      <Draggable>
+      
       <Modal
         show={this.state.open}
         onClose={handleClose}
@@ -79,23 +87,27 @@ export default class apiSearch extends Component {
       >
          <div>
         <div className="ApiBody">
-			<div className="searchBar">
-				<form onSubmit={onSubmitform}>
-					<input
+			
+				<form onSubmit={onSubmitform} className="searchBar">
+					
+          <input
 						type="text"
-						id="search"
-						label='Search'
-						name="search"
-						autoComplete='search'
-						onChange={onChange}
+						label='characterSearch'
+						name="characterSearch"
+						autoComplete='characterSearch'
+            onChange={onChange}
+            style={{
+              height:'30px',
+              width:'400px',
+              fontSize:'22px',
+              fontFamily: 'sans-serif',
+              fontStyle:'italic',
+              border:'3px solid black'
+            }}
 					/>
-          <ToggleButtonGroup type="radio"  name='apiSelector' onChange={handleAlignment}>
-            <ToggleButton value='char'>character</ToggleButton>
-            <ToggleButton value='bg'>Background</ToggleButton>
-          </ToggleButtonGroup>
-					<button type="submit">submit</button>
+					<button type="submit" className='submitApi'>submit</button>
 				</form>
-			</div>
+		
 			<div className="grid">
 				{imageGallery.map(function (image, i) {
           return <img 
@@ -110,7 +122,7 @@ export default class apiSearch extends Component {
 	      
         </div>
           </Modal>
-          </Draggable>
+          
     </div>
    
         )

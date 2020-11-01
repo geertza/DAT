@@ -17,9 +17,9 @@ export default class Characters extends Component {
                     id='character'
                     onClick={changePosition}
                     default={{
-                    x: 0,
-                    y: 0,
-                    width: 320,
+                    x: 200,
+                    y: 150,
+                    width: 100,
                     height: 200
                     }}
                 >

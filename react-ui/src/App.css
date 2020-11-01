@@ -1,7 +1,19 @@
-.game{
-    background-size: cover;
-    height: 200vh;
+body{
+    max-width: 1000px;
+    max-height: 400px;
+    overflow: hidden;
+    background-color: black;
 }
+.gameBoard{
+      width: 800px;
+      height: 500px;
+      margin: 0px auto;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-color: white;
+      position: relative;
+      overflow: hidden;
+  }
 .modal{
     position: fixed;
     top: 3%;
@@ -11,14 +23,31 @@
 background-image: url('https://images.unsplash.com/photo-1537210249814-b9a10a161ae4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80');
 background-size: cover;
 width: 100vw;
-height: auto;
+height: 90vh;
+overflow: scroll;
+}
+.searchBar{
+    position: fixed;
+    top:3%;
+    left: 5%;
+    background-color: rgba(19, 116, 201, 0.217);
+    padding: 10px;
+    border-radius: 20px;
+    display: flex
+}
+.submitApi{
+    height: 36px;
+    font-size: 23px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(227, 232, 236);
+    margin-left:-10%;
+    width: 200px;
 }
 .grid{ 
   width: 100vw;
   padding: 5%;
   display: flex;
-
-overflow: scroll;
+  margin-top: 5%;
 }
 .character{
     height: 50%;
@@ -29,6 +58,7 @@ overflow: scroll;
 }
 #character{
     height: 50vh;
+    width: initial;
     /* display: -ms-inline-grid; */
     /* transform: translate(550px, 167.333px); */
    
@@ -39,25 +69,10 @@ overflow: scroll;
     border-style: hidden;
 }
 
-
-.main{
-    position: fixed;
-    float: right;
-    bottom: 4%;
-    width: 30vw;
-    right:5%
-}
-.input{
-    width: 20vw;
-}
-
 .messages{
     bottom: 0%;
 }
 
-.bg{
-    background-size: 100% 100% ;
-}
 .Avatar{
     height: 20vh;
 }
@@ -88,12 +103,7 @@ overflow: scroll;
     overflow: auto;
     flex: auto;
   }
-  .gameBoard{
-      width: 90vw;
-      height: 100vh;
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-  }
+  
 
 
 
