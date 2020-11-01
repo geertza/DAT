@@ -9,14 +9,29 @@ const Message = ({ message: { text, user }, name }) => {
 
   const trimmedName = name.trim().toLowerCase();
 
-  
+  if(user === trimmedName) {
+    isSentByCurrentUser = true;
+  }
 
   return (
-    
-        <div className="messageContainer ">
-          <div className="sentText ">{trimmedName}</div>
-          <div className="messageBox ">{ReactEmoji.emojify(text)} </div>
+    isSentByCurrentUser
+      ? (
+        <div className="messageContainer justifyEnd">
+          <div className="messageBox">
+          <p className="sentText pr-10">{trimmedName}</p>
+            <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
+          </div>
         </div>
+        )
+        : (
+          <div className="messageContainer justifyStart">
+            <div className="messageBox">
+              <p className="sentText pl-10 ">{user}</p>
+            <p className="messageText ">{ReactEmoji.emojify(text)}</p>
+          
+            </div>
+          </div>
+        )
   );
 }
 

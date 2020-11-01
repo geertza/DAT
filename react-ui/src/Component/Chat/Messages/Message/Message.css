@@ -1,40 +1,80 @@
 .messageBox {
-  background: #260b7f;
+  background: #1381d0;
   border-radius: 20px;
-  padding: 5px 20px;
+  padding: 1px 20px;
   color: white;
-  max-width: 80%;
+  max-width: 300px;
   vertical-align: middle;
+  width: min-content;
+border: 3px solid black;
+margin: 0 -35px;
+}
+.messages{
+  max-height: 400px ;
+  margin-top: -40px;
+padding: 5% 0;
+  overflow-x: hidden;
+  flex: auto;
+  width: 800px;
+  line-height: 1;
 }
 
 .messageText {
-  width: auto;
-  letter-spacing: 0;
+  max-width: 280px;
   float: left;
-  font-size: 1.1em;
-  word-wrap: break-word;
+  font-size: 1em;
+  margin: 3px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: silver;
 }
 
 
 .messageContainer {
-  
+  display: flex;
+  justify-content: flex-end;
   padding: 0 5%;
   margin-top: 3px;
+  
 }
-.messages {
+/* .messages {
   display: flex;
   flex-wrap: wrap;
-}
+  max-height: 200px ;
+} */
 
 .sentText {
-  align-items: center;
-  font-family: Helvetica;
-  color: #f1eded;
+  font-family: bar;
+  font-size: 24px;
+  text-align: left;
+  font-style: italic;
+  color: silver;
   letter-spacing: 0.3px;
-  padding: 10px;
-  background-color: rgb(26, 89, 165);
-  border-radius: 20px;
+  padding: 1px;
+  /* background-color: rgb(26, 89, 165); */
+  /* border-radius: 20px; */
+  width: 100%;
+  margin: 3px 30px;
+  line-height: .6;
 }
+
+.pl-10 {
+  padding-left: 10px;
+}
+
+.pr-10 {
+  padding-right: 10px;
+}
+
+.justifyStart {
+  justify-content: flex-start;
+} */
+ 
+.justifyEnd {
+  justify-content: flex-end;
+}
+
+
+
 
 
 

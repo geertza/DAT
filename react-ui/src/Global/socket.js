@@ -95,7 +95,7 @@ useEffect(() => {
 
   return (
     <React.Fragment>
-    <Rnd  
+    {/* <Rnd  
     className='chat'
     default={{
       x: 0,
@@ -103,9 +103,9 @@ useEffect(() => {
       width: '800px',
       height: '200px'
       }}
-    >
+    > */}
     <Messages messages={messages} name={name}  />
-    </Rnd>
+    {/* </Rnd> */}
     </React.Fragment>
   );
 }

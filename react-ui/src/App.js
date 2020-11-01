@@ -13,8 +13,8 @@ export default class App extends React.Component {
     const isLoggedIn = this.context.room.loggedIn;
     return (
       <React.Fragment>
-      {/* <b>{!isLoggedIn ? <Login /> : <Game />}</b> */}
-      <Game />
+      <b>{!isLoggedIn ? <Login /> : <Game />}</b>
+      {/* <Game /> */}
       </React.Fragment>
     );
   }

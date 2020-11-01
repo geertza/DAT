@@ -45,9 +45,10 @@ overflow: scroll;
 }
 .grid{ 
   width: 100vw;
-  padding: 5%;
+  padding: 5% 10%;
   display: flex;
   margin-top: 5%;
+  overflow-x: scroll;
 }
 .character{
     height: 50%;
@@ -69,9 +70,7 @@ overflow: scroll;
     border-style: hidden;
 }
 
-.messages{
-    bottom: 0%;
-}
+
 
 .Avatar{
     height: 20vh;
@@ -98,11 +97,12 @@ overflow: scroll;
     position: absolute;
     right: 0;
   }
-  .messages {
-    padding: 5% 0;
-    overflow: auto;
-    flex: auto;
+  
+  @font-face {
+    font-family: bar;
+    src: url(./lib/TheWildBreathOfZelda-15Lv.ttf);
   }
+  
   
 
 

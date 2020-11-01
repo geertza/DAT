@@ -26,6 +26,7 @@ export default class input extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.setState({sendM: this.state.message});
+    this.setState({message: ''});
   }
  
   render() {
@@ -35,7 +36,7 @@ console.log("state sendm",this.state.sendM)
       <form className="form" onSubmit={this.handleSubmit} >
       <textarea 
           className='input'
-          value={this.state.body} 
+          value={this.state.message} 
           onChange={this.handleChange} />
         <input type="submit" value="Submit" className="sendButton"/>
         <Button 
