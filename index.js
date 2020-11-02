@@ -7,20 +7,19 @@ const app = express();
 const Search = require ('./Controller/BingSearch')
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./Controller/roomUsers');
 const bodyParser = require("body-parser");
+const port = process.env.PORT || 3001;
 
-
-
-app.use(
-  cors({
-    origin:"http://localhost:" + 3001, // <-- location of the react app were connecting to
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin:"http://localhost:" + 3001, // <-- location of the react app were connecting to
+//     credentials: true,
+//   })
+// );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const server = express()
-  .use(express.static(path.resolve(__dirname, '../react-ui/build')))
-  .listen(3001, () => console.log(`Listening on 3001`));
+  .use(express.static(path.resolve(__dirname, './react-ui/build')))
+  .listen(port, () => console.log(`Listening on`,port));
 const io = socketio(server);
 
 
