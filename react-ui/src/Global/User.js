@@ -11,7 +11,7 @@ class UserProvider extends Component {
     },
     background:'',
     name: 'ted',
-    character:'https://i.kym-cdn.com/photos/images/original/001/321/186/351.png',
+    character:'',
     style:'',
     otherUsers:{}
      ,
