@@ -4,8 +4,8 @@ import Messages from '../Component/Chat/Messages/Messages';
 import InfoBar from '../Component/Chat/InfoBar/InfoBar';
 import UserContext from './User'
 import { Rnd } from "react-rnd";
-const ENDPOINT = 'http://localhost:3001';
-// const ENDPOINT = 'https://dungeons-and-theater.herokuapp.com/';
+// const ENDPOINT = 'http://localhost:3001';
+const ENDPOINT = 'https://dungeons-and-theater.herokuapp.com/';
 let socket;
 
 function Socket(props) {
