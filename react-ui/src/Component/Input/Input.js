@@ -2,8 +2,6 @@ import React,{Component} from 'react';
 import Socket from '../../Global/socket';
 import ApiSearch from '../Objects/apiSearch'
 import {Button} from 'react-bootstrap';
-import './Input.css';
-
 export default class input extends Component {
   constructor(props){
     super();

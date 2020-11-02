@@ -9,9 +9,9 @@ class UserProvider extends Component {
       lobby:'lobby',
     
     },
-    background:'https://cdna.artstation.com/p/assets/images/images/009/059/572/large/mark-teare-keyartfebpresentation04homeedit01.jpg?1516888980',
+    background:'',
     name: 'ted',
-    character:'https://p1.hiclipart.com/preview/550/683/772/highschool-of-the-dead-rei-miyamoto-and-saeko-busujima-digital-wallpaper-png-clipart.jpg',
+    character:'',
     style:'',
     styleToggle:true,
     otherUsers:{},

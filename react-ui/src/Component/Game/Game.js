@@ -11,7 +11,7 @@ import Input from '../Input/Input';
    constructor(props) {
      super();
      this.state={
-       backgroundImage:'https://cdn.searchenginejournal.com/wp-content/uploads/2018/04/clients-from-hell.png'
+       backgroundImage:''
      }
    }
     componentDidUpdate(prevProps) {

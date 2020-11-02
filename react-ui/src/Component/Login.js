@@ -6,7 +6,7 @@ export default class Login extends Component {
   constructor(){
     super();
     this.state={
-      name:'andy'
+      name:''
     };
      this.onHandleChange = this.onHandleChange.bind(this);
   }
@@ -24,32 +24,34 @@ export default class Login extends Component {
     
     return (
       <div className='login'>
+        <h3 >SIGN In For Adventure</h3>
       <Container className='loginField m-auto' >
         <Form
           className='card-image'
-          style={{
-            backgroundColor:'lightblue'
+          onSubmit={() => {
+            if (this.state.name !== ''){
+              setUser(this.state.name)
+            }
           }}
-         
         >
-          <h3 className='white-text mb-5 mt-4 font-weight-bold'>
-              <strong> SIGN In For Adventure</strong>
-          </h3>
-              <Form.Label>Screen Name</Form.Label>
+          
+              <Form.Label className='sName'>Screen Name</Form.Label>
           <Form.Group controlId="name">
             
-            <Form.Control type="name"  name='screenName' onChange={this.onHandleChange} />
+            <Form.Control type="name"  name='screenName' className='screenName' onChange={this.onHandleChange} placeholder='Pirate Joe'/>
             <Form.Text className="text-muted">
             </Form.Text>
           </Form.Group>
-          <Form.Label>Room</Form.Label>
+          {/* <Form.Label>Room</Form.Label>
           <Form.Group controlId="room">
            
             <Form.Control type="name"  name='screenName' />
             <Form.Text className="text-muted">
             </Form.Text>
-          </Form.Group>
+          </Form.Group> */}
           <Button
+          type='submit'
+          className='loginsubmit'
           onClick={() => {
               if (this.state.name !== ''){
                 setUser(this.state.name)

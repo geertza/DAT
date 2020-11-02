@@ -86,25 +86,120 @@ overflow: scroll;
 .react-draggable:hover{
     border-style: groove;
 }
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: #FFFFFF;
-    border-radius: 8px;
-    max-height: 80vh;
-    width: 25vw;
-    border-style: solid;
-    border-width: 5px;
-    position: absolute;
-    right: 0;
-  }
+
+
   .otherUser{
       z-index: 3;
       position: absolute;
       top: 0px;
   }
+
+  /* ---------------------------------------------- */
+  /* ----------------------------login */
+  .loginsubmit{
+      width: 80%;
+      font-size: 12vh;
+      font-family: bar;
+      height: 15vh;
+      margin: 3%;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: bar;
+    text-align: center;
+    
+    max-height: 80vh;
+    width: 45vw;
+    border-style: ridge;
+    border-width: 5px;
+    border-color: rgb(4, 39, 110);
+    border-radius: 8px;
+    position: relative;
+    left: 27%;
+    margin-top: 0;
+  }
+  h3{
+      font-family: bar;
+      color: red;
+      width: 100%;
+      text-align: center;
+      font-size: 15vh;
+      margin-bottom: 5vh;
+      margin-top: 0vh;
+  }
+  .sName{
+      font-size: 10vh;
+      color: rgb(208, 36, 36);
+      text-shadow: 1px 1px black;
+  }
+  .screenName{
+      background-color: black;
+      color:white;
+      width:80%;
+      margin: 0;
+      font-family: bar;
+      font-size: 10vh;
+      border-color: rgb(22, 22, 86);
+  }
+  .card-image{
+      background-color: rgba(82, 82, 251, 0.449);
+  }
+  /* ----------------------------- */
+  /* ----------------------input */
+  .form {
+      border: rgb(26, 16, 84) solid 2px ;
+    display: flex;
+    position: fixed;
+    bottom: 0%;
+    left: 0;
+    width: 100vw;
+    height: 55px;
+    margin: 0px auto;
+    z-index: 9; 
+    background-color: grey;
+  }
   
+  .input {
+    border: 5px solid black;
+    padding: 3px;
+    width: 80vw;
+    font-size: 15px;
+    height: 40px;
+  }
+  
+  input:hover{
+    border: 5px solid blue;
+  }
+  
+  .sendButton,.submitApi {
+   
+    width: 200px;
+    border-radius: 0 15px 15px 0;
+    
+    margin: 0;
+  }
+  button,input{
+    height: 55px;
+    border: 3px solid black;
+    border-radius: 15px;
+    background-color: rgb(6, 26, 59);
+    line-height: 90%;
+    padding: 0px 10px;
+    color: white;
+     text-transform: uppercase;
+    text-decoration: none;
+    margin: 0 15px;
+  }
+  button:hover{
+    border: 3px solid rgb(15, 194, 214);
+  }
+  strong{
+    font-size: 20px;
+    font-weight: 900;
+  }
+
   @font-face {
     font-family: bar;
     src: url(./lib/TheWildBreathOfZelda-15Lv.ttf);
