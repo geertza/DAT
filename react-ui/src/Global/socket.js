@@ -12,11 +12,12 @@ let socket;
 
 function Socket(props) {
   
-  let {room,setOtherChars,Search,setGallery,style,character,name,sendBG,setBackground} = useContext(UserContext);
+  let {room,setOtherChars,Search,setGallery,style,character,name,sendBG,setBackground,styleToggle} = useContext(UserContext);
   const [roomName] = useState(room.lobby);
   // const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  console.log('test toggle',styleToggle)
   useEffect(() => {
     
     socket = io(ENDPOINT);
@@ -59,7 +60,7 @@ function Socket(props) {
         });
       }
     },
-    [style,name,character],
+    [styleToggle,style,character],
   );
   useEffect(() => {
     if (Search.image === ''){

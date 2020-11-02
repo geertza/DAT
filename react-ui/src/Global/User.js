@@ -11,10 +11,11 @@ class UserProvider extends Component {
     },
     background:'https://cdna.artstation.com/p/assets/images/images/009/059/572/large/mark-teare-keyartfebpresentation04homeedit01.jpg?1516888980',
     name: 'ted',
-    character:'',
+    character:'https://p1.hiclipart.com/preview/550/683/772/highschool-of-the-dead-rei-miyamoto-and-saeko-busujima-digital-wallpaper-png-clipart.jpg',
     style:'',
-    otherUsers:{}
-     ,
+    styleToggle:true,
+    otherUsers:{},
+    otherToggle:'up',
     Search:{
       image:'',
       option:''
@@ -42,11 +43,27 @@ class UserProvider extends Component {
     console.log('bg',this.state.background)
   }
   setCharStyle=(data,src)=>{
-    this.setState({style: {}});
+    console.log('shouldemit')
     this.setState({style: data});
+    if (this.state.styleToggle === true){
+      this.setState({styleToggle:false})
+      console.log('no')
+    }
+    else
+    {
+      console.log('yes')
+      this.setState({styleToggle:true})
+    }
   }
   setOtherChars=(data)=>{
     this.state.otherUsers[data.otherName]= data
+      if (this.state.otherToggle = 'up'){
+        this.setState({otherToggle:'down'})
+      }
+      else
+      {
+        this.setState({otherToggle:'up'})
+      }
   }
   api=(image,option) => {
     console.log('api user')
@@ -64,7 +81,7 @@ class UserProvider extends Component {
   render() {   
     
     const { children } = this.props
-    const { name,character,style,room,otherUsers,Chat,Search,imageGallery,background,sendBG } = this.state
+    const { name,character,style,room,otherUsers,Chat,Search,imageGallery,background,sendBG,otherToggle,styleToggle } = this.state
     const { setUser,setCharacter,setBackground,setCharStyle,setOtherChars,api,setGallery,sendBackground} = this
     return (
       <UserContext.Provider
@@ -79,6 +96,8 @@ class UserProvider extends Component {
           character,
           background,
           sendBG,
+          otherToggle,
+          styleToggle,
           setUser,
           setCharacter,
           setBackground,

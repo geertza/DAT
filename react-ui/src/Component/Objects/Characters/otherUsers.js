@@ -5,16 +5,23 @@ export default class otherUsers extends Component {
     constructor(props){
         super();
         this.state=({
-            otherUsers:{}
+            otherUsers:{},
+            otherToggle:'up'
         })
     }
 
         //    update state with context
-    componentDidUpdate() {
-                let {otherUsers} = this.context;
-                console.log('call',this.state.otherUsersImage,'break',otherUsers)
-                if (otherUsers !== this.state.otherUsersImage) {
-                    this.setState({otherUsersImage:otherUsers})
+    componentDidUpdate(prevProps) {
+                let {otherUsers,otherToggle} = this.context;
+                if (otherToggle !== this.state.otherToggle) {
+                    this.setState({otherUsers:otherUsers})
+                    if (this.state.otherToggle = 'up'){
+                        this.setState({otherToggle:'down'})
+                      }
+                      else
+                      {
+                        this.setState({otherToggle:'up'})
+                      }
                 }
                 }
 
@@ -22,10 +29,9 @@ export default class otherUsers extends Component {
 
     render() {
         let {otherUsers} = this.context;
-      
 
         if ((JSON.stringify(this.state.otherUsers) === '{}')||(this.state.otherUsers === undefined)){
-            console.log('empty')
+            
             return(<div />)
         }
         else

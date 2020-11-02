@@ -30,7 +30,6 @@ export default class input extends Component {
   }
  
   render() {
-console.log("state sendm",this.state.sendM)
     return (
       <React.Fragment>
       <form className="form" onSubmit={this.handleSubmit} >
