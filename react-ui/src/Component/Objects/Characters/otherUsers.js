@@ -2,10 +2,29 @@ import React, { Component } from 'react'
 import UserContext from '../../../Global/User'
 export default class otherUsers extends Component {
     static contextType = UserContext
-   
+    constructor(props){
+        super();
+        this.state=({
+            otherUsers:{}
+        })
+    }
+
+        //    update state with context
+    componentDidUpdate() {
+                let {otherUsers} = this.context;
+                console.log('call',this.state.otherUsersImage,'break',otherUsers)
+                if (otherUsers !== this.state.otherUsersImage) {
+                    this.setState({otherUsersImage:otherUsers})
+                }
+                }
+
+
+
     render() {
         let {otherUsers} = this.context;
-        if ((JSON.stringify(otherUsers) === '{}')||(otherUsers === undefined)){
+      
+
+        if ((JSON.stringify(this.state.otherUsers) === '{}')||(this.state.otherUsers === undefined)){
             console.log('empty')
             return(<div />)
         }
@@ -15,19 +34,20 @@ export default class otherUsers extends Component {
             return (
                 
                 <div>
-                {Object.keys(otherUsers).map((keyName, i) => (
+                {Object.keys(this.state.otherUsers).map((keyName, i) => (
         
                     <img 
-                        src={otherUsers[keyName].otherCharacter}
-                        id= {otherUsers[keyName].otherName}
+                        src={this.state.otherUsers[keyName].otherCharacter}
+                        id= {this.state.otherUsers[keyName].otherName}
+                        className='otherUser'
                         alt=''
                         key={'char'+i}
                          style={{
-                             height:otherUsers[keyName].otherStyle.height,
-                             width:otherUsers[keyName].otherStyle.width,
-                             transform:otherUsers[keyName].otherStyle.transform,
+                             height:this.state.otherUsers[keyName].otherStyle.height,
+                             width:this.state.otherUsers[keyName].otherStyle.width,
+                             transform:this.state.otherUsers[keyName].otherStyle.transform,
                              }} >
-                              {console.log('height',otherUsers[keyName].otherStyle)}   
+                              {console.log('height',this.state.otherUsers[keyName].otherStyle)}   
                              </img>
                     ))
                 }

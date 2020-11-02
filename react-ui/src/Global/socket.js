@@ -5,9 +5,9 @@ import InfoBar from '../Component/Chat/InfoBar/InfoBar';
 import UserContext from './User'
 import { Rnd } from "react-rnd";
  //  dev ENDPOINT
-// const ENDPOINT = 'http://localhost:3001';
+const ENDPOINT = 'http://localhost:3001';
  //  production ENDPOINT
-const ENDPOINT = 'https://dungeons-and-theater.herokuapp.com/';
+// const ENDPOINT = 'https://dungeons-and-theater.herokuapp.com/';
 let socket;
 
 function Socket(props) {
@@ -62,7 +62,6 @@ function Socket(props) {
     [style,name,character],
   );
   useEffect(() => {
-    console.log('searchEmit',Search.image)
     if (Search.image === ''){
       return
     }

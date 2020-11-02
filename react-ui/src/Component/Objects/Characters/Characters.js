@@ -17,10 +17,10 @@ export default class Characters extends Component {
                     id='character'
                     onClick={changePosition}
                     default={{
-                    x: 200,
-                    y: 150,
+                    x: 300,
+                    y: 100,
                     width: 100,
-                    height: 200
+                    height: 200,
                     }}
                 >
                     <img src={objects} alt='' style={{width:'100%',height:'100%',backgroundColor:'transparent'}} />

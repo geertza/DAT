@@ -55,6 +55,7 @@ export default class apiSearch extends Component {
     //-------------query api
     const onSubmitform = e =>{
         e.preventDefault();
+        console.log('submit')
         api(this.state.search,this.state.option)
       }
   

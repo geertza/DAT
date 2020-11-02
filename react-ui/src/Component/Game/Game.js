@@ -1,4 +1,4 @@
-import React, { Component} from 'react'
+import React, { Component, useContext} from 'react'
 import UserContext from '../../Global/User'
 import Characters from '../Objects/Characters/Characters'
 import OtherUsers from '../Objects/Characters/otherUsers'
@@ -8,13 +8,25 @@ import Input from '../Input/Input';
 
  class Game extends Component {
    static contextType = UserContext
+   constructor(props) {
+     super();
+     this.state={
+       backgroundImage:'https://cdn.searchenginejournal.com/wp-content/uploads/2018/04/clients-from-hell.png'
+     }
+   }
+    componentDidUpdate(prevProps) {
+      let {background} = this.context;
+        if (background !== this.state.backgroundImage) {
+          this.setState({backgroundImage:background})
+        }
+      }
+   
     render() {
       let {background} = this.context;
      
-      console.log('final',background)
       return (
       <React.Fragment >
-          <div className="gameBoard" style={{backgroundImage:`url('${background}')`}} >
+          <div className="gameBoard" style={{backgroundImage:`url('${this.state.backgroundImage}')`}} >
            <Input   />
           <Characters />
           <OtherUsers />

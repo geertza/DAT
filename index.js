@@ -80,8 +80,14 @@ io.on('connect', (socket) => {
       sendSearch(image,option)
   })
   socket.on('BG',(data)=> {
-    console.log('bg',data)
+    const user = getUser(socket.id);
+    if (user !== undefined){
+    socket.broadcast.to(user.room).emit('BGreturn', data);
     socket.emit('BGreturn', data);
+  }
+  else{
+    socket.emit('pageReset')
+  }
   })
 
 

@@ -9,16 +9,12 @@ class UserProvider extends Component {
       lobby:'lobby',
     
     },
-    background:'',
+    background:'https://cdna.artstation.com/p/assets/images/images/009/059/572/large/mark-teare-keyartfebpresentation04homeedit01.jpg?1516888980',
     name: 'ted',
     character:'',
     style:'',
     otherUsers:{}
      ,
-    Chat:{
-      message:'',
-      messages:[],
-    },
     Search:{
       image:'',
       option:''
@@ -53,6 +49,7 @@ class UserProvider extends Component {
     this.state.otherUsers[data.otherName]= data
   }
   api=(image,option) => {
+    console.log('api user')
     this.setState({Search:{image:image,option:option}})
   }
   setGallery = (data) => {
