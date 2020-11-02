@@ -10,12 +10,11 @@ let socket;
 
 function Socket(props) {
   
-  let {room,setOtherChars,Search,setGallery,style,character,name} = useContext(UserContext);
+  let {room,setOtherChars,Search,setGallery,style,character,name,sendBG,setBackground} = useContext(UserContext);
   const [roomName] = useState(room.lobby);
   // const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  console.log('sock sendm',props.sendM)
   useEffect(() => {
     
     socket = io(ENDPOINT);
@@ -31,15 +30,16 @@ function Socket(props) {
       setMessages(messages => [...messages, message ]);
     });
     
-    // socket.on("roomData", ({ users }) => {
-    //   setUsers(users);
-    // });
     socket.on('otherUserInfo',({newData }) =>{
-      console.log('other',newData)
       setOtherChars(newData)
+      console.log('otherhere')
     });
     socket.on('searchResults', data => {
       setGallery(data)
+    });
+    socket.on('BGreturn', data => {
+      setBackground(data);
+      console.log('bgreturn',data)
     });
     socket.on('pageReset', () =>{
       console.log('reset')
@@ -47,11 +47,7 @@ function Socket(props) {
     })
   }, [setOtherChars,setGallery]);
   useEffect(() => {
-    if (style===''){
-      console.log('style empty')
-    }
-    else
-    {
+    if (!(style==='')){
       console.log('charemit')
         socket.emit('sendCharacter', ({name,character,style}), (error) => {
           
@@ -79,33 +75,24 @@ function Socket(props) {
   [Search],
 );
 useEffect(() => {
-  console.log('use',props.sendM)
-  if (props.sendM === ''){
-    return
-  }
-  else{
+  if (!(props.sendM === '')){
     socket.emit('sendMessage', props.sendM, () => setMessage(''));
-    
   }
-  
 },
 [props.sendM],
 );
- 
+useEffect(() => {
+  console.log('useeffectBG',sendBG,JSON.stringify(sendBG))
+  if (!(JSON.stringify(sendBG) ==='')){
+    socket.emit('BG', sendBG);
+  }
+},
+[sendBG],
+);
 
   return (
     <React.Fragment>
-    {/* <Rnd  
-    className='chat'
-    default={{
-      x: 0,
-      y: 0,
-      width: '800px',
-      height: '200px'
-      }}
-    > */}
     <Messages messages={messages} name={name}  />
-    {/* </Rnd> */}
     </React.Fragment>
   );
 }

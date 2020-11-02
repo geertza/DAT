@@ -12,19 +12,10 @@ export default class apiSearch extends Component {
       option:''
     };
   }  
-  // open modal with prop update
-  // componentDidUpdate(nextProps) {
-  //   if(this.props.alignment = nextProps.alignment){
-  //     console.log('fucker hit',nextProps,this.props)
-  //   }
-  //   else{
-  //     console.log('open',this.props,nextProps)
-  //     this.setState({open:true})
-  //   }
-  // } 
+
   componentDidUpdate(prevProps) {
     if (prevProps.alignment !== this.props.alignment) {
-      if(this.props.alignment === ('bg' || 'back'))
+      if((this.props.alignment === ('bg')) || (this.props.alignment === ('back'))  )
         { this.setState({option:'bg'})}
         else
         { this.setState({option:'char'})}
@@ -36,10 +27,9 @@ export default class apiSearch extends Component {
   render() { 
   
     
-    const {  setCharacter, setBackground,api,imageGallery } = this.context
+    const {  setCharacter,api,imageGallery,sendBackground } = this.context
     // close modal
     const handleClose = () => {
-    console.log('hitclose',this.state.open)
      this.setState({open:false})
   };
 
@@ -47,13 +37,11 @@ export default class apiSearch extends Component {
     this.setState({
       search: e.target.value
     });
-    alignmentCheck()
 	  }
   const handleChange = event => {
-    console.log('hit change',this.state.alignment)
     handleClose()
     if (this.state.option === 'bg'){
-      setBackground(event.target.src)
+      sendBackground(event.target.src)
     }
     else{
         setCharacter(event.target.src);
@@ -61,12 +49,7 @@ export default class apiSearch extends Component {
     
   }
 
-  const alignmentCheck = () =>{
-    if(this.props.alignment === ('bg' || 'back'))
-        { this.setState({option:'bg'})}
-        else
-        { this.setState({option:'char'})}
-  }
+
 
 
     //-------------query api

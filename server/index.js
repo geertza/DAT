@@ -80,6 +80,11 @@ io.on('connect', (socket) => {
       }
       sendSearch(image,option)
   })
+  socket.on('BG',(data)=> {
+    console.log('bg',data)
+    socket.emit('BGreturn', data);
+  })
+
 
   socket.on('disconnect', () => {
     const user = removeUser(socket.id);

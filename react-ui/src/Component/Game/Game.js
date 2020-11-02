@@ -8,16 +8,10 @@ import Input from '../Input/Input';
 
  class Game extends Component {
    static contextType = UserContext
-    
-   constructor(props){
-      super();
-      this.state = {
-     
-      }
-    } 
     render() {
       let {background} = this.context;
-      console.log(background)
+     
+      console.log('final',background)
       return (
       <React.Fragment >
           <div className="gameBoard" style={{backgroundImage:`url('${background}')`}} >

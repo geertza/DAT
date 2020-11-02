@@ -9,7 +9,7 @@ class UserProvider extends Component {
       lobby:'lobby',
     
     },
-    background:'https://wallpapertag.com/wallpaper/full/9/2/a/121775-club-background-2000x1333-for-iphone-6.jpg',
+    background:'',
     name: 'ted',
     character:'https://i.kym-cdn.com/photos/images/original/001/321/186/351.png',
     style:'',
@@ -24,7 +24,7 @@ class UserProvider extends Component {
       option:''
     },
     imageGallery:[],
-    
+    sendBG:'',
       
    
   }
@@ -43,15 +43,14 @@ class UserProvider extends Component {
   }
   setBackground = (data)=>{
     this.setState({background : data});
+    console.log('bg',this.state.background)
   }
   setCharStyle=(data,src)=>{
     this.setState({style: {}});
     this.setState({style: data});
-    console.log('here',this.state.style)
   }
   setOtherChars=(data)=>{
     this.state.otherUsers[data.otherName]= data
-  console.log('fianl here',this.state.otherUsers)
   }
   api=(image,option) => {
     this.setState({Search:{image:image,option:option}})
@@ -60,13 +59,16 @@ class UserProvider extends Component {
     let results = data.data
     this.setState({imageGallery:results})
   }
+  sendBackground= (data)=>{
+    this.setState({sendBG:data})
+  }
  
 
   render() {   
     
     const { children } = this.props
-    const { name,character,style,room,otherUsers,Chat,Search,imageGallery,background } = this.state
-    const { setUser,setCharacter,setBackground,setCharStyle,setOtherChars,api,setGallery} = this
+    const { name,character,style,room,otherUsers,Chat,Search,imageGallery,background,sendBG } = this.state
+    const { setUser,setCharacter,setBackground,setCharStyle,setOtherChars,api,setGallery,sendBackground} = this
     return (
       <UserContext.Provider
         value={{
@@ -79,12 +81,14 @@ class UserProvider extends Component {
           name,
           character,
           background,
+          sendBG,
           setUser,
           setCharacter,
           setBackground,
           setCharStyle,
           setOtherChars,
           setGallery,
+          sendBackground,
           api,
         }}
       >

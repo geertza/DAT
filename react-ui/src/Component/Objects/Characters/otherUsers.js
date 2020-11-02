@@ -5,7 +5,6 @@ export default class otherUsers extends Component {
    
     render() {
         let {otherUsers} = this.context;
-        console.log('berfore',otherUsers)
         if ((JSON.stringify(otherUsers) === '{}')||(otherUsers === undefined)){
             console.log('empty')
             return(<div />)
