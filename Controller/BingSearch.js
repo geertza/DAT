@@ -8,7 +8,14 @@ async function search(image,option) {
     if (option === 'bg'){
       results = await  axios.get(`https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=background${image}&safeSearch=off`, {
         headers: {
-          "Ocp-Apim-Subscription-Key": apiKey ,
+          "Ocp-Apim-Subscription-Key": apiKey,
+          "safeSearch":'on',
+          "isFamilyFriendly" : true,
+          },
+          params:{
+            imageType: 'transparent',
+            safeSearch: 'on',
+            count:120
           }
         
         })
@@ -18,13 +25,13 @@ async function search(image,option) {
       results = await axios.get(`https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=${image}`, {
         headers: {
           "Ocp-Apim-Subscription-Key": apiKey,
-          "safeSearch":'off',
-          "isFamilyFriendly" : false,
+          "safeSearch":'on',
+          "isFamilyFriendly" : true,
           },
           params:{
             imageType: 'transparent',
-            safeSearch: 'off',
-            count:150
+            safeSearch: 'on',
+            count:120
           }
 
       })
